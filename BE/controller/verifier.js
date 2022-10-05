@@ -12,7 +12,7 @@ const verify = async (req, res) => {
         const {message, signature, signer}= validate(req.body);
         const signer2 = ethers.utils.verifyMessage(message, signature);
         if (signer === signer2) {
-            res.send({status: true, message: "Verification completed!"});
+            res.send({status: true, message: "Verified! Signed by " + signer});
         } else {
             res.send({status: true, message: "Verification failed!"});
         }

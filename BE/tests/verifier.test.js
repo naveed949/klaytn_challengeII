@@ -56,7 +56,7 @@ describe('POST /verify route', () => {
       it('should verify valid signature', async () => {
           const res = await request(app).post('/verify').send(body).expect(httpStatus.OK);
           expect(res.body.status).to.equal(true);
-          expect(res.body.message).to.equal("Verification completed!");
+          expect(res.body.message).to.equal("Verified! Signed by " + body.signer);
       })
   })
 })
