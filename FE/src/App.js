@@ -104,7 +104,7 @@ function App() {
                     <div>
                         <button className="btn btn-light" onClick={ connect}> connect wallet</button> <br/>
                         {address ? (
-                            <p className="connected">connected with: {address.substring(0,5).concat("....").concat(address.substring(38,42))}</p>
+                            <p className="connected text-break fs-6">connected with: {address.substring(0,5).concat("....").concat(address.substring(38,42))}</p>
                         ) : null}
                         <input
                             className="form-control"
@@ -118,7 +118,7 @@ function App() {
                                 SIGNATURE: {signature}
                             </p>
                         ) : null}
-                        <button className="btn btn-light" onClick={ sign}> Sign</button>
+                        <button className="btn btn-light" onClick={ sign}> Sign Message</button>
                         <button className="btn btn-light" onClick={ verifyFE}> Verify on FE</button>
                         <button className="btn btn-light" onClick={ verifyBE}> Verify on BE</button>
                         <br/>

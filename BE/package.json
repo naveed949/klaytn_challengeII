@@ -4,6 +4,7 @@
   "description": "this project includes backend api to verify signature coming from frontend",
   "main": "index.js",
   "scripts": {
+    "server": "node server.js",
     "test": "mocha tests/"
   },
   "keywords": [
