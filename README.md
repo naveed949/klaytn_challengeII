@@ -38,3 +38,9 @@ Screenshots of react app is shared below
 2.  [image2](./FE/2.png) - shows the UI when signature is verified from BE.
 
 #### You can connect you Metamask wallet with this react-app.
+### Developed & Tested on following dev env:
+```shell
+node  v16.17.0
+npm  v8.19.2
+
+```
