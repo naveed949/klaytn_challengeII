@@ -36,3 +36,5 @@ npm start
 Screenshots of react app is shared below
 1.  [image1](./FE/1.png) - shows the UI when app is loaded
 2.  [image2](./FE/2.png) - shows the UI when signature is verified from BE.
+
+#### You can connect you Metamask wallet with this react-app.
