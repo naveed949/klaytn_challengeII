@@ -51,8 +51,10 @@ function App() {
 
     // function to sign the random message. Message should be entered first on UI on given input field
   const sign = async () => {
-      if (!provider) return;
       try {
+          if (!signer) throw new Error("wallet not connected");
+          if (!message) throw new Error("please enter message first");
+
           const signature = await signer.signMessage(message);
           setSignature(signature);
       } catch (error) {
@@ -95,6 +97,9 @@ function App() {
   // function to verify signature on FE (within browser)
   const verifyFE = async () => {
       try {
+          if (!message) throw new Error("please enter message first");
+          if (!signature) throw new Error("please sign message first");
+
       let verified = ethers.utils.verifyMessage(message, signature);
       if (verified === address)
       window.alert("Verified! signed by: " + verified);
