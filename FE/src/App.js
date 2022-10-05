@@ -7,6 +7,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {providerOptions} from './providers';
 
 function App() {
+
+    // STATE of this app
   const [address, setAddress]=useState(null)
   const [signer, setSigner]=useState(null)
   const [provider, setProvider]=useState(null)
@@ -14,6 +16,7 @@ function App() {
   const [signature, setSignature]=useState(null)
   const [error, setError]=useState("")
 
+    // function to connect web3 providers e.g Metamask with app
   async function connect() {
       try {
         const web3Modal = new Web3Modal({
@@ -28,19 +31,25 @@ function App() {
         setSigner( signer);
         setProvider(provider);
 
-          provider.on("accountsChanged", (accounts) => {
+          instance.on("accountsChanged", (accounts) => {
               window.location.reload()
           });
 
           // Subscribe to chainId change
-          provider.on("chainChanged", (chainId) => {
+          instance.on("chainChanged", (chainId) => {
               window.location.reload()
           });
-      } catch (e) {
+          // Subscribe to chainId change
+          instance.on("disconnect", (chainId) => {
+              window.location.reload()
+          });
+      } catch (error) {
           console.error(error);
           setError(error);
       }
     }
+
+    // function to sign the random message. Message should be entered first on UI on given input field
   const sign = async () => {
       if (!provider) return;
       try {
@@ -51,10 +60,13 @@ function App() {
           setError(error);
       }
   }
+  // utility function to fetch message typed in input filed
   const getMessage = async (e) => {
       const msg = e.target.value;
       setMessage(msg);
   }
+
+  // function to verify signature from BE through POST /verify request
   const verifyBE = async () => {
       try {
           const requestOptions = {
@@ -74,11 +86,13 @@ function App() {
               }).catch(error => {
                   throw(error);
           });
-      } catch (e) {
+      } catch (error) {
           // console.error(error);
           setError(error);
       }
   }
+
+  // function to verify signature on FE (within browser)
   const verifyFE = async () => {
       try {
       let verified = ethers.utils.verifyMessage(message, signature);
