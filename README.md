@@ -45,3 +45,6 @@ node  v16.17.0
 npm  v8.19.2
 
 ```
+## Live Demo
+React app is deployed and config with BE API at following URL:
+http://3.87.167.130:3000/
